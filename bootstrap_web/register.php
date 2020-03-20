@@ -9,18 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="Faiyaz Rafeek and FA Design contributors">
     <meta name="generator" content="FA Design v1.0.0">
-    <title>Sign In</title>
+    <title>Sign Up - Bootstrap Web</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/img/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/img/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="img/favicon.ico">
 
     <meta name="theme-color" content="#563d7c">
 
@@ -42,34 +41,37 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="floating-labels.css" rel="stylesheet">
+    <link href="css/floating-labels.css" rel="stylesheet">
   </head>
 
   <body>
-    <form class="form-signin" method="POST" action="login.php" >
-        <div class="text-center mb-4">
-            <img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-        </div>
-        <div class="form-label-group">
+    <form class="form-signin" method="POST" action="register.php" >
+    <div class="form-group">
           <?php include('errors.php'); ?>
       </div>
+        <div class="text-center mb-4">
+            <img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+        </div>       
         <div class="form-label-group">
-            <input type="text" name="username" class="form-control" placeholder="Email address"  autofocus>
+            <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
             <label>Username</label>
         </div>
         <div class="form-label-group">
-            <input type="password" name="password" class="form-control" placeholder="Password" >
+            <input type="email" name="email" class="form-control" placeholder="Email address">
+            <label>Email Adress</label>
+        </div>
+        <div class="form-label-group">
+            <input type="password" name="password_1" class="form-control" placeholder="Password">
             <label>Password</label>
         </div>
-        <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
+        <div class="form-label-group">
+            <input type="password" name="password_2" class="form-control" placeholder="Password">
+            <label>Confirm Password</label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="register">Sign in</button>
         <div class="text-center mb-4">
-            <p>Not yet a member? <a href="register.php">Register</a></p>
+            <p>Already a member ? <a href="login.php">Register</a></p>
         </div>
         
         <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p>

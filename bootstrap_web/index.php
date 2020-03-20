@@ -1,5 +1,10 @@
-<?php 
-  include('server.php');
+<?php
+    include('server.php');
+
+    //if user is not logged in, they cannot access this page
+    if(empty($_SESSION['username'])){
+        header('location:login.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -7,21 +12,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Faiyaz Rafeek and FA Design contributors">
-    <meta name="generator" content="FA Design v1.0.0">
-    <title>Sign In</title>
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Home - Bootstrap Web</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!-- Bootstrap core CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/img/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/img/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/img/favicon.ico">
-
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="img/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="img/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="img/favicons/manifest.json">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="img/favicon.ico">
+   
     <meta name="theme-color" content="#563d7c">
 
 
@@ -42,44 +47,58 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="floating-labels.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
   </head>
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">PHP Login</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="index.php">Home</a>
+        <a class="nav-link" href="crud.php">CRUD</a>
+        <a class="nav-link" href="contact.php">Contact</a>
+        <a class="nav-link" href="index.php?logout='1'">Logout</a>
+      </nav>
+    </div>
+  </header>
+    
+  <div class="container">
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                    echo $_SESSION['success'];
+                    unset ($_SESSION['success']);
+                ?>
+            </div>
+        <?php endif ?>
+    </div>
 
-  <body>
-    <form class="form-signin" method="POST" action="login.php" >
-        <div class="text-center mb-4">
-            <img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-        </div>
-        <div class="form-label-group">
-          <?php include('errors.php'); ?>
-      </div>
-        <div class="form-label-group">
-            <input type="text" name="username" class="form-control" placeholder="Email address"  autofocus>
-            <label>Username</label>
-        </div>
-        <div class="form-label-group">
-            <input type="password" name="password" class="form-control" placeholder="Password" >
-            <label>Password</label>
-        </div>
-        <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <div class="text-center mb-4">
-            <p>Not yet a member? <a href="register.php">Register</a></p>
-        </div>
-        
-        <p class="mt-5 mb-3 text-muted text-center">&copy; 2020</p>
-    </form>
+  <main role="main" class="inner cover">
+    <div class="container">
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success" role="alert">
+                <?php
+                    echo $_SESSION['success'];
+                    unset ($_SESSION['success']);
+                ?>
+            </div>
+        <?php endif ?>
 
+        <?php if(isset($_SESSION["username"])): ?>
+            <div class="starter-template">
+                <h1 class="cover-heading">Welcome <strong><?php echo $_SESSION['username']; ?></strong></h1>
+            </div>
+        <?php endif ?>
+    </div>
+   
+  </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   </body>
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Designed for <a href="#">FA Design</a>, by <a href="#">@faiyazrafeek</a>.</p>
+    </div>
+  </footer>
+</div>
+</body>
 </html>
